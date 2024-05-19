@@ -1,0 +1,39 @@
+[2024-05-19T12:20:04.018+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-05-19T12:20:04.063+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: data_loader.upload_file manual__2024-05-19T12:19:59.685410+00:00 [queued]>
+[2024-05-19T12:20:04.079+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: data_loader.upload_file manual__2024-05-19T12:19:59.685410+00:00 [queued]>
+[2024-05-19T12:20:04.081+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-05-19T12:20:04.106+0000] {taskinstance.py:2330} INFO - Executing <Task(LocalFilesystemToGCSOperator): upload_file> on 2024-05-19 12:19:59.685410+00:00
+[2024-05-19T12:20:04.126+0000] {warnings.py:110} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=1151) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-05-19T12:20:04.133+0000] {standard_task_runner.py:63} INFO - Started process 1161 to run task
+[2024-05-19T12:20:04.135+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'data_loader', 'upload_file', 'manual__2024-05-19T12:19:59.685410+00:00', '--job-id', '383', '--raw', '--subdir', 'DAGS_FOLDER/data_loader.py', '--cfg-path', '/tmp/tmpzcgqssl8']
+[2024-05-19T12:20:04.149+0000] {standard_task_runner.py:91} INFO - Job 383: Subtask upload_file
+[2024-05-19T12:20:04.312+0000] {task_command.py:426} INFO - Running <TaskInstance: data_loader.upload_file manual__2024-05-19T12:19:59.685410+00:00 [running]> on host a464b827924a
+[2024-05-19T12:20:04.447+0000] {warnings.py:110} WARNING - /home/***/.local/lib/python3.12/site-packages/***/utils/context.py:212: AirflowContextDeprecationWarning: Accessing 'execution_date' from the template is deprecated and will be removed in a future version. Please use 'data_interval_start' or 'logical_date' instead.
+  warnings.warn(_create_deprecation_warning(key, self._deprecation_replacements[key]))
+
+[2024-05-19T12:20:04.543+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='data_loader' AIRFLOW_CTX_TASK_ID='upload_file' AIRFLOW_CTX_EXECUTION_DATE='2024-05-19T12:19:59.685410+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-05-19T12:19:59.685410+00:00'
+[2024-05-19T12:20:04.554+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-05-19T12:20:04.573+0000] {connection.py:274} WARNING - Connection schemes (type: google_cloud_platform) shall not contain '_' according to RFC3986.
+[2024-05-19T12:20:04.577+0000] {base.py:84} INFO - Using connection ID 'googlecloud' for task execution.
+[2024-05-19T12:20:04.584+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-05-19T12:20:04.586+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/google/cloud/transfers/local_to_gcs.py", line 98, in execute
+    raise FileNotFoundError(self.src)
+FileNotFoundError: /data/data_example.txt
+[2024-05-19T12:20:04.614+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=data_loader, task_id=upload_file, run_id=manual__2024-05-19T12:19:59.685410+00:00, execution_date=20240519T121959, start_date=20240519T122004, end_date=20240519T122004
+[2024-05-19T12:20:04.638+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 383 for task upload_file (/data/data_example.txt; 1161)
+[2024-05-19T12:20:04.673+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-05-19T12:20:04.712+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-05-19T12:20:04.717+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
